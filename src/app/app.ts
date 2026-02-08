@@ -1,9 +1,15 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { FirstComponent } from '../app/first-component/first-component';
+import { ComponentLifeCycle } from '../app/component-life-cycle/component-life-cycle';
+import { AngularDataBinding } from '../app/angular-data-binding/angular-data-binding';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,  
+    //ComponentLifeCycle,
+    AngularDataBinding
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
