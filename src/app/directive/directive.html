@@ -1,0 +1,81 @@
+<div class="container-fluid p-1">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white text-center">
+            <h3>Angular-Directive</h3>
+        </div>
+        <div class="card-body p-4">
+            <form *ngIf="isStudentDiv">
+                <div class="row mb-3">
+                    <div class="row mb-3">
+                        <!-- Title -->
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Title <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="title" name="title"
+                                placeholder="Enter product title" [(ngModel)]="product.title" required minlength="3"
+                                #title="ngModel">
+
+                            <div class="text-danger small" *ngIf="title.invalid && (title.dirty || title.touched)">
+                                <div *ngIf="title.errors?.['required']">Title is required.</div>
+                                <div *ngIf="title.errors?.['minlength']">Title must be at least 3 characters.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="studentName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="studentName" placeholder="Enter full name"
+                                required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="studentName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="studentName" placeholder="Enter full name"
+                                required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="studentAge" class="form-label">Age</label>
+                            <input type="number" class="form-control" id="studentAge" placeholder="Enter age" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="gender" class="form-label">Gender</label>
+                            <select class="form-select" id="gender" required>
+                                <option selected disabled value="">Choose...</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="department" class="form-label">Department</label>
+                            <select class="form-select" id="department" required>
+                                <option selected disabled value="">Choose...</option>
+                                <option *ngFor="let vardepartment of _departmentList" [value]="vardepartment.Id">{{
+                                    vardepartment.Name }}</option>
+
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="product" class="form-label">Product </label>
+                            <ul [ngSwitch]="productStatus">
+                                <li *ngSwitchCase="'Available'">
+                                     <ul>
+                                        <li *ngFor="let item of _productList">{{ item.Name }} - {{ item.Price | currency }}</li>
+                                     </ul>
+                                </li>
+                                <li *ngSwitchCase="'OutofStock'">
+                                    <label for="studentName" class="form-label" style="color: red ">Out of  Stock</label>
+                                </li>
+                                <li *ngSwitchDefault>
+                                    Product status unknown.
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-success px-4 me-2" type="button">Submit</button>
+                    </div>
+                </div>
+            </form>
+
+
+
+
+        </div>
+
+    </div>
+</div>
