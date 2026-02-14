@@ -1,7 +1,7 @@
 <div class="container-fluid p-1">
     <div class="card shadow-lg border-0">
         <div class="card-header bg-primary text-white text-center">
-            <h3>Angular-Directive</h3>
+            <h3 [ngClass]="{'red': _isRedClass}" [ngStyle]= "{'font-size':_textFontSize}" >Angular-Directive</h3>
         </div>
         <div class="card-body p-4">
             <form *ngIf="isStudentDiv">

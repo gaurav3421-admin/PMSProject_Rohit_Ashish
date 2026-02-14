@@ -4,13 +4,15 @@ import { FirstComponent } from '../app/first-component/first-component';
 import { ComponentLifeCycle } from '../app/component-life-cycle/component-life-cycle';
 import { AngularDataBinding } from '../app/angular-data-binding/angular-data-binding';
 import { Directive } from '../app/directive/directive';
+import { Pipes } from '../app/pipes/pipes';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,  
+  imports: [RouterOutlet,
     //ComponentLifeCycle,
     //AngularDataBinding,
-    Directive
+    //Directive
+    Pipes
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'

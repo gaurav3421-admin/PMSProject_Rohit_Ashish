@@ -10,6 +10,9 @@ import { CommonModule } from '@angular/common'
 })
 export class Directive implements OnInit {
 
+   _isRedClass:boolean = false;
+   _textFontSize:string = '24px';
+
   product = {
     title: '',
   };
