@@ -1,15 +1,21 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Bring in CommonModule to use built-in directives and pipes
+import { TempConverterPipe } from '../temp-converter-pipe'; // Import the custom pipe 
+
 
 @Component({
   selector: 'app-pipes',
-  imports: [CommonModule], // bring in CommonModule
+  imports: [CommonModule,TempConverterPipe], // bring in CommonModule and the custom pipe
   templateUrl: './pipes.html',
   styleUrl: './pipes.css',
 })
 export class Pipes {
 
-    name: string = "gaurav kumar";
+  // Custom Pipe for Temperature Conversion
+  temperatureInCelsius: number = 25;
+  temperatureInFahrenheit: number = 68;
+
+  name: string = "gaurav kumar";
   today: Date = new Date();
   price: number = 1234.5678;
   percentValue: number = 0.4523;

@@ -5,6 +5,7 @@ import { ComponentLifeCycle } from '../app/component-life-cycle/component-life-c
 import { AngularDataBinding } from '../app/angular-data-binding/angular-data-binding';
 import { Directive } from '../app/directive/directive';
 import { Pipes } from '../app/pipes/pipes';
+import { StudentRegistration} from '../app/student-registration/student-registration';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,8 @@ import { Pipes } from '../app/pipes/pipes';
     //ComponentLifeCycle,
     //AngularDataBinding,
     //Directive
-    Pipes
+    //Pipes,
+    StudentRegistration 
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'

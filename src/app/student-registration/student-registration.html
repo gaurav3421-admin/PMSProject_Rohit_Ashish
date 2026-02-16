@@ -1,0 +1,57 @@
+<div class="card table-card">
+    <div class="card-header">
+        <h5>Template Driven Form </h5>
+    </div>
+    <div class="card-body p-2">
+        <div class="container-fulid mt-1">
+            <div class="card p-4 shadow">
+                <!-- Reference the form with #studentForm and bind to ngSubmit event -->
+                <form #studentForm="ngForm" (ngSubmit)="onStudentInfoamtionSubmit(studentForm)" novalidate>
+
+                    <!-- Section 1: Student Basic Information -->
+                    <h5 class="mb-3 text-primary border-bottom pb-2">1️⃣ Student Basic Information</h5>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="studentName" class="form-label">Full Name</label>
+                            <!-- Add name attribute, [(ngModel)], required, and validation reference #fullName -->
+                            <input type="text" class="form-control" id="fullName" placeholder="Enter full name"
+                                name="fullName" required [(ngModel)]="studentData.fullName" #fullName="ngModel">
+                            <div *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)" class="text-danger">
+                                Name is required.
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <label for="studentAge" class="form-label">Age</label>
+                            <input type="number" class="form-control" id="studentAge" placeholder="Enter age" name="age"
+                                max="100" min="1" [(ngModel)]="studentData.age" #age="ngModel" required>
+                            <div *ngIf="age.invalid && (age.dirty || age.touched)" class="text-danger">
+                                Age is required and must be between 1 and 100.
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <label for="gender" class="form-label">Gender</label>
+                            <select class="form-select" id="gender" name="gender" [(ngModel)]="studentData.gender"
+                                #gender="ngModel" required>
+                                <option value="" disabled>Choose...</option>
+                                <option *ngFor="let g of genders" [value]="g">{{ g }}</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="text-center">
+                        <!-- Disable submit button if the form is invalid -->
+                        <button type="submit" class="btn btn-success px-4 me-2">Submit</button>
+                        <button type="reset" class="btn btn-secondary px-4">Reset</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
