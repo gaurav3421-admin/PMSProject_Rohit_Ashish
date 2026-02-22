@@ -27,8 +27,8 @@
                                 <p>Decimal: {{ price | number:'1.2-4' }}</p>
                                 <p>Percent: {{ percentValue | percent }}</p>
 
-                                <p>Slice (first 2 fruits): {{ fruits | slice:0:2 }}</p>
-                                <p>Student JSON: {{ student | json }}</p>
+                                <p>Slice (first 2 fruits): {{ fruits | slice:0:3 }}</p>
+                                <p>Student JSON: {{ student | json}}</p>
                                 <div *ngFor="let item of keyValueObject | keyvalue">
                                     {{ item.key }} : {{ item.value }}
                                 </div>
@@ -47,6 +47,7 @@
                      <div class="row mb-3">
                         <div class="col-md-12">
                           <h3>Temperature Conversion</h3>
+                        <p>98°F converted to Celsius is: {{ 98 | tempConverter:'C' }}°C</p>  
                         <p>68°F converted to Celsius is: {{ 68 | tempConverter:'C' }}°C</p>
                         <p>25°C converted to Fahrenheit is: {{ 25 | tempConverter:'F' }}°F</p>
 

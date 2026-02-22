@@ -14,11 +14,11 @@ export class TempConverterPipe implements PipeTransform {
       if (unit === 'C') {
         // Convert to Celsius
         const temperature = (value - 32) * 5 / 9;
-        return Number(temperature.toFixed(2));
+        return Number(temperature.toFixed(4));
       } else if (unit === 'F') {
         // Convert to Fahrenheit
         const temperature = (value * 9 / 5) + 32;
-        return Number(temperature.toFixed(2));
+        return Number(temperature.toFixed(4));
       }
     }
     return value;
