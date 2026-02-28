@@ -7,6 +7,7 @@ import { Directive } from '../app/directive/directive';
 import { Pipes } from '../app/pipes/pipes';
 import { StudentRegistration} from '../app/student-registration/student-registration';
 import { StudentInformationAshish } from '../app/student-information-ashish/student-information-ashish';
+import { ReactiveForm } from '../app/reactive-form/reactive-form'
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ import { StudentInformationAshish } from '../app/student-information-ashish/stud
     //Directive
     //Pipes
     //StudentRegistration,
-    StudentInformationAshish
+    //StudentInformationAshish,
+    ReactiveForm
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'

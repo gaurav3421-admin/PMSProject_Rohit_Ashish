@@ -1,0 +1,52 @@
+<div class="card table-card">
+    <div class="card-header">
+        <h5>Reactive Form </h5>
+    </div>
+    <div class="card-body p-2">
+        <div class="container-fulid mt-1">
+            <div class="card p-4 shadow">
+                <!-- Reference the form with #studentForm and bind to ngSubmit event -->
+                <form [formGroup]="studentReactiveForm" (ngSubmit)="onSubmit()"  novalidate>
+
+                    <!-- Section 1: Student Basic Information -->
+                    <h5 class="mb-3 text-primary border-bottom pb-2">1️⃣ Student Basic Information</h5>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="studentName" class="form-label">Full Name</label>
+                            <!-- Add name attribute, [(ngModel)], required, and validation reference #fullName -->
+                            <input type="text" class="form-control" id="fullName" placeholder="Enter full name"
+                                name="fullName" formControlName="fullName">
+                            <div *ngIf="studentReactiveForm.controls['fullName']?.invalid && (studentReactiveForm.controls['fullName']?.touched || studentReactiveForm.controls['fullName']?.dirty)"
+                                class="alert alert-danger">
+                                Name is required.
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="studentAge" class="form-label">Age</label>
+                            <input type="number" class="form-control" id="studentAge" placeholder="Enter age" name="age"
+                                max="100" min="1" formControlName="age"  >
+                            <div *ngIf="studentReactiveForm.controls['age']?.invalid && (studentReactiveForm.controls['age']?.touched || studentReactiveForm.controls['age']?.dirty )" class="text-danger">
+                                Age is required and must be between 1 and 100.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="text-center">
+                        <!-- Disable submit button if the form is invalid -->
+                        <button type="submit" class="btn btn-success px-4 me-2" [disabled]="studentReactiveForm.invalid">Submit</button>
+                        <button type="reset" class="btn btn-secondary px-4">Reset</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
