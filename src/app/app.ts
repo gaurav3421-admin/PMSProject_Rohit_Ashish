@@ -8,6 +8,11 @@ import { Pipes } from '../app/pipes/pipes';
 import { StudentRegistration} from '../app/student-registration/student-registration';
 import { StudentInformationAshish } from '../app/student-information-ashish/student-information-ashish';
 import { ReactiveForm } from '../app/reactive-form/reactive-form'
+import { Login } from '../app/login/login';
+import { Home} from '../app/home/home';
+
+
+
 
 @Component({
   selector: 'app-root',
@@ -18,7 +23,9 @@ import { ReactiveForm } from '../app/reactive-form/reactive-form'
     //Pipes
     //StudentRegistration,
     //StudentInformationAshish,
-    ReactiveForm
+    //ReactiveForm
+    //Login
+    Home
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
