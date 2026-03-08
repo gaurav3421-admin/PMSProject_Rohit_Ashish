@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms'; // step 1: import ReactiveFormsModule
 import { CommonModule } from '@angular/common';
+import { passwordStrengthValidator  } from '../password-strength.validator'
 
 @Component({
   selector: 'app-reactive-form',
@@ -24,7 +25,7 @@ export class ReactiveForm implements OnInit {
 
       fullName: new FormControl('', [Validators.required]),
       age :new FormControl('', [Validators.required, Validators.min(1), Validators.max(100)]),
-
+      password: new FormControl('', [Validators.required, passwordStrengthValidator()]),
 
     });
   }
