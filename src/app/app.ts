@@ -8,7 +8,6 @@ import { Pipes } from '../app/pipes/pipes';
 import { StudentRegistration} from '../app/student-registration/student-registration';
 import { StudentInformationAshish } from '../app/student-information-ashish/student-information-ashish';
 import { ReactiveForm } from '../app/reactive-form/reactive-form'
-import { Login } from '../app/login/login';
 import { Home} from '../app/home/home';
 
 
@@ -16,7 +15,8 @@ import { Home} from '../app/home/home';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,
+  imports: [
+    RouterOutlet,
     //ComponentLifeCycle,
     //AngularDataBinding,
     //Directive
@@ -25,7 +25,7 @@ import { Home} from '../app/home/home';
     //StudentInformationAshish,
     //ReactiveForm
     //Login
-    Home
+    //Home
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
