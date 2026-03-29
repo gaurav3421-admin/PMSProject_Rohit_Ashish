@@ -20,6 +20,13 @@ export class Login {
       console.log('Form Submitted', _loginForm.value);
       //this._router.navigate(['/home/registration']);
       //this._router.navigate(['/home/registration'], { queryParams: { login: true ,sasdsdf:wwe ,adsdaf:adsd } });
+      
+       localStorage.setItem('accessToken', 'xxxyyyzzz'); // Simulate token storage after successful login
+       localStorage.setItem('Role', 'admin'); // Simulate token storage after successful login
+       //localStorage.setItem('Role', 'user'); // Simulate token storage after successful login
+
+      
+
       this._router.navigateByUrl('/home/registration');
 
     } else {
