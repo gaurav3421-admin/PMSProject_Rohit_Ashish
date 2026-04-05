@@ -1,8 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; font-family: Arial, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Arial, "Helvetica Neue", sans-serif; font-size: 14px; }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; font-size: 12px; }
-/* Make all Bootstrap form controls small globally */
+/* ...existing code... */
 .form-control,
 .form-select,
 textarea {
@@ -24,4 +23,24 @@ textarea {
   font-size: 0.9rem;
   font-weight: 500;
 }
+/* ...existing code... */
 
+/* Ensure Bootstrap's font variables use Arial */
+:root {
+  --bs-body-font-family: Arial, "Helvetica Neue", sans-serif;
+  --bs-font-sans-serif: Arial, "Helvetica Neue", sans-serif;
+}
+
+/* Apply Arial across common elements and Bootstrap components */
+body,
+button,
+input,
+select,
+textarea,
+.btn,
+.navbar,
+.card {
+  font-family: Arial, "Helvetica Neue", sans-serif !important;
+}
+
+/* ...existing code... */
