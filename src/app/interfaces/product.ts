@@ -3,11 +3,15 @@ export interface Dimensions {
   height?: number;
   depth?: number;
 }
+export interface Category {
+  id: number;
+  productCategory: string;
+}
 export interface Product {
     id: number;
     title: string;
     description?: string;
-    category?: string;
+    category?: Category;
     price?: number;
     discountPercentage?: number;
     rating?: number;

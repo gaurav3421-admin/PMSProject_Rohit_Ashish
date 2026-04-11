@@ -1,7 +1,8 @@
-import { Component ,OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // teamplate-driven forms
 import { NgForm } from '@angular/forms'; // Import NgForm for template-driven forms
 import { CommonModule } from '@angular/common'; // for directives like ngIf, ngFor
+import { Commonservice } from '../services/commonservice'; // Import the service to fetch product categories
 
 
 @Component({
@@ -15,12 +16,15 @@ export class AddProduct implements OnInit {
   // Class Variables
 
   isProductAdded = false;
-  responseMessage:string=''; 
+  responseMessage: string = '';
   alertType: 'success' | 'error' | 'info' | '' = '';
- product = {
+  product = {
     title: '',
     description: '',
-    category: '',
+    category:[
+      { id: 1, productCategory: 'Electronics' }
+  
+    ],
     price: null,
     discountPercentage: null,
     rating: null,
@@ -38,20 +42,33 @@ export class AddProduct implements OnInit {
     returnPolicy: '',
     minimumOrderQuantity: null
   };
-  
-  constructor() {};   
-  
+  productCategories: any[] = [];
+  constructor(private _commonservice: Commonservice) { };
+
   ngOnInit() {
+    this._commonservice.getProductCategory().subscribe({
+      next: (data: any[]  ) => {
+        this.productCategories = data;
+        console.log('Product Categories fetched successfully');
+        console.log(this.productCategories);
+      },
+      error: (error:any) => {
+        console.error("Error fetching product categories:", error);
+      },
+      complete: () => {
+        console.log("Product category fetching completed");
+      }
+    });
+
   }
-//Method to handle form submission
+  //Method to handle form submission
   addProductDetails(addProductForm: NgForm) {
 
-      if (addProductForm.valid)
-      {
-           this.isProductAdded=true;
-           this.alertType='success';
-           this.responseMessage='Product added successfully!';
-      }
+    if (addProductForm.valid) {
+      this.isProductAdded = true;
+      this.alertType = 'success';
+      this.responseMessage = 'Product added successfully!';
+    }
 
   }
 
