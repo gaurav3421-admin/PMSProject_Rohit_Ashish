@@ -28,8 +28,8 @@ export const routes: Routes = [
             { path: 'addproduct', loadComponent: () => import('../app/add-product/add-product').then(m => m.AddProduct) },
             { path: 'updateproduct', loadComponent: () => import('../app/update-product/update-product').then(m => m.UpdateProduct) },
             { path: 'deleteproduct', loadComponent: () => import('../app/delete-product/delete-product').then(m => m.DeleteProduct) },
-            { path: 'allproduct', loadComponent: () => import('../app/product-details/product-details').then(m => m.ProductDetails) },
-            { path: 'searchproduct', loadComponent: () => import('../app/product-search/product-search').then(m => m.ProductSearch) }
+            { path: 'searchproduct', loadComponent: () => import('../app/product-search/product-search').then(m => m.ProductSearch) },
+            { path: 'allproduct', loadComponent: () => import('../app/product-details/product-details').then(m => m.ProductDetails) }
         ]
 
     },

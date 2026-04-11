@@ -22,3 +22,10 @@ export interface Product {
     availabilityStatus?: string;
     
 }
+export interface ProductItem {
+    id: number;
+    title: string;
+    description: string;
+    category: string;
+
+}

@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // for directives like ngIf, ngFor
 import { FormsModule } from '@angular/forms'; // teamplate-driven forms
 import { NgForm } from '@angular/forms'; // Import NgForm for template-driven forms
 
 
-
 @Component({
-  selector: 'app-delete-product',
+  selector: 'app-update-product',
   imports: [FormsModule, CommonModule],
-  templateUrl: './delete-product.html',
-  styleUrl: './delete-product.css',
+  templateUrl: './update-product.html',
+  styleUrl: './update-product.css',
 })
-export class DeleteProduct implements OnInit {
+export class UpdateProduct {
+
 
   searchText: string = '';
   //product: any = null;
@@ -53,14 +53,8 @@ export class DeleteProduct implements OnInit {
   };
 
 
-
-  // Constructor
+  // Consructor
   constructor() { };
-
-  ngOnInit() {
-    
-  }
-
 
   SearchProduct() {
     console.log('Searching for product:', this.searchText);
@@ -77,7 +71,7 @@ export class DeleteProduct implements OnInit {
   }
 
   //Method to handle form submission
-  deleteProductDetails(updateProductForm: NgForm) {
+  updateProductDetails(updateProductForm: NgForm) {
     if (updateProductForm.valid) {
 
     } else {
@@ -86,5 +80,8 @@ export class DeleteProduct implements OnInit {
 
 
   }
+
+
+
 
 }

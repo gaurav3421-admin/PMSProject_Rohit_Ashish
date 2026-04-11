@@ -4,22 +4,19 @@ import { FormsModule } from '@angular/forms'; // teamplate-driven forms
 import { NgForm } from '@angular/forms'; // Import NgForm for template-driven forms
 
 
-
 @Component({
-  selector: 'app-delete-product',
+  selector: 'app-product-search',
   imports: [FormsModule, CommonModule],
-  templateUrl: './delete-product.html',
-  styleUrl: './delete-product.css',
+  templateUrl: './product-search.html',
+  styleUrl: './product-search.css',
 })
-export class DeleteProduct implements OnInit {
+export class ProductSearch implements OnInit {
 
   searchText: string = '';
-  //product: any = null;
   isLoading = false;
   errorMessage = '';
-  isProductAdded = false;
-  message: string = '';
-  alertType: 'success' | 'error' | 'info' | '' = '';
+
+  // initialize product with full shape so template bindings don't read null
   product: any = {
     id: null,
     title: '',
@@ -52,16 +49,16 @@ export class DeleteProduct implements OnInit {
     images: []
   };
 
-
+  isProductAdded = false;
+  message = '';
+  alertType: 'success' | 'error' | 'info' = 'success';
 
   // Constructor
   constructor() { };
 
   ngOnInit() {
-    
+    // Initialize any data or state here
   }
-
-
   SearchProduct() {
     console.log('Searching for product:', this.searchText);
     if (!this.searchText.trim()) {
@@ -73,18 +70,7 @@ export class DeleteProduct implements OnInit {
     this.isLoading = true;
     this.errorMessage = '';
 
-
-  }
-
-  //Method to handle form submission
-  deleteProductDetails(updateProductForm: NgForm) {
-    if (updateProductForm.valid) {
-
-    } else {
-      console.log("form is not valid");
-    }
-
-
+    
   }
 
 }

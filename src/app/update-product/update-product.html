@@ -1,6 +1,6 @@
 <div class="card table-card">
     <div class="card-header">
-        <h5>Delete Product Details</h5>
+        <h5>Update Product Details</h5>
     </div>
     <!-- Success Message Div -->
     <div *ngIf="isProductAdded" class="alert  mt-3  p-1" [ngClass]="{
@@ -13,7 +13,7 @@
     <div class="card-body p-2">
         <div class="container-fulid mt-1">
             <div class="card p-4 shadow">
-                <form #deletedProductForm="ngForm" novalidate>
+                <form #updatedProductForm="ngForm" novalidate>
                     <div class="row">
                         <div class="col-md-1 mb-3">
                             <label for="productName" class="form-label">Product Name</label>
@@ -22,21 +22,21 @@
                             <input type="text" class="form-control" name="searchText"
                                 placeholder="Enter product name..." [(ngModel)]="searchText" required
                                 #productName="ngModel">
-                            <div *ngIf="deletedProductForm.controls['productName']?.invalid 
-                                && (deletedProductForm.controls['productName']?.touched || 
-                                deletedProductForm.controls['productName']?.dirty)"
+                            <div *ngIf="updatedProductForm.controls['productName']?.invalid 
+                                && (updatedProductForm.controls['productName']?.touched || 
+                                updatedProductForm.controls['productName']?.dirty)"
                                 class="text-danger mb-1 alert alert-danger p-1">Enter product name.
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <button class="btn btn-primary" [disabled]="deletedProductForm.invalid || isLoading"
+                            <button class="btn btn-primary" [disabled]="updatedProductForm.invalid || isLoading"
                                 type="submit" (click)="SearchProduct()" >
                                 Search Product
                             </button>
                             &nbsp;&nbsp;
-                            <button class="btn btn-danger" [disabled]="deletedProductForm.invalid || isLoading"
-                                type="submit" (click)="deleteProductDetails(deletedProductForm)">
-                                Delete Product Details
+                            <button class="btn btn-danger" [disabled]="updatedProductForm.invalid || isLoading"
+                                type="submit" (click)="updateProductDetails(updatedProductForm)">
+                                Update Product Details
                             </button>
                         </div>
 
@@ -208,9 +208,9 @@
 
                     </div>
                     <div class="text-center mt-3">
-                        <button class="btn btn-danger" [disabled]="deletedProductForm.invalid || isLoading"
-                            type="submit" (click)="deleteProductDetails(deletedProductForm)">
-                            Delete Product Details
+                        <button class="btn btn-danger" [disabled]="updatedProductForm.invalid || isLoading"
+                            type="submit" (click)="updateProductDetails(updatedProductForm)">
+                            Update Product Details
                         </button>
                     </div>
                 </form>
