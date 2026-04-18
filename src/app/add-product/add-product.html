@@ -33,11 +33,9 @@
                         <!-- Category -->
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Category <span class="text-danger">*</span></label>
-                            <select class="form-select" id="category" name="category" [(ngModel)]="product.category"
-                                #category="ngModel" required>
-                                <option value="" disabled>Choose...</option>
-                                <option *ngFor="let c of product.category" [value]="c.id">{{ c.productCategory }}</option>
-                            </select>
+                            <input type="text" class="form-control" id="category" name="category"
+                                placeholder="Enter product category" [(ngModel)]="product.category" required
+                                #category="ngModel">
                             <div class="text-danger small"
                                 *ngIf="category.invalid && (category.dirty || category.touched)">
                                 Category is required.
