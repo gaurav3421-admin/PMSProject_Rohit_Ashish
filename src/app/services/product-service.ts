@@ -1,7 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'; // Step 1 - Import HttpClient and HttpErrorResponse
-import { ProductDetailsArray, Product } from '../interfaces/product';
+import { ProductDetailsArray, ProductItem, Product, IProductDelete } from '../interfaces/product';
 import { Observable, of } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { ObjectEncodingOptions } from 'fs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +13,7 @@ export class ProductService {
   private apiURLProductDetails = 'https://dummyjson.com/products'; // API base enpoint'
   private apiURLProductAdd = 'https://dummyjson.com/products/add'; // API base enpoint'
   private apiURLUpdateProduct = 'https://dummyjson.com/products';
+  private apiURLDeleteProduct = 'https://dummyjson.com/products';
 
 
   constructor() { }
@@ -73,7 +76,7 @@ export class ProductService {
 
   }
 
-    // 'https://dummyjson.com/products/1'
+  // 'https://dummyjson.com/products/1'
   //Updating a product will not update it into the server. It will simulate a PUT/PATCH request and will return updated product with modified data
   UpdateProductDetailsByID(productID: number, product: Product): Observable<Product | null> {
     if (this.httpClientRequest) {
@@ -84,16 +87,34 @@ export class ProductService {
   }
 
   // DELETE Method to remove product details by ID
-  DeleteProductDetailsByID(productId: number): void {
+  //https://dummyjson.com/products/1
+  DeleteProductDetailsByID(productId: number): Observable<IProductDelete | null> {
+    if (this.httpClientRequest) {
+      return this.httpClientRequest.delete<IProductDelete | null>(`${this.apiURLDeleteProduct}/${productId}`);
+    } else {
+      return of(null);
+    }
 
   }
 
 
+  // MAP Operator
+  fetchProductsTitles(): Observable<string[]> {
 
+    console.log("This is service Method :getAllProducts() calling");
+    if (this.httpClientRequest) {
+      return this.httpClientRequest.get<ProductItem[]>(this.apiURLProductDetails).pipe(map(
+        (data: any) => (data.products || data).map((item: ProductItem) => item.title)
+      ));
+    } else {
+      return of([]);
+    }
 
-
-
-
-
+  }
 
 }
+
+
+
+
+

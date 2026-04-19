@@ -1,0 +1,47 @@
+<!-- ...existing code... -->
+<div class="card table-card">
+  <div class="card-header">
+    <h5>Angular Advanced Topics</h5>
+  </div>
+  <div class="card-body p-2">
+    <div class="container-fulid mt-1">
+
+      <div class="card p-4 shadow mb-3">
+        <h6>1. Using map Operator to Transform Data</h6>
+        <p>Demonstrates how to use the map operator to transform the data received from an API.</p>
+        <h6>2. Using switchMap Operator for Dependent API Calls</h6>
+        <p>Shows how to use switchMap to handle dependent API calls effectively.</p>
+        <h6>3. Using catchError Operator for Error Handling</h6>
+        <p>Illustrates how to implement error handling in observables using the catchError operator.</p>
+      </div>
+
+      <!-- productNames (map) -->
+      <div class="card p-4 shadow mb-3">
+        <h6>Map Operator — Product Names</h6>
+        <p>Transformed list of product names (map).</p>
+
+        <ng-container *ngIf="productNames && productNames.length; else noNames">
+          <table class="table table-sm table-striped">
+            <thead>
+              <tr>
+                <th style="width:50px">#</th>
+                <th>Product Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let name of productNames; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ name }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
+        <ng-template #noNames>
+          <p class="text-muted">No product names available.</p>
+        </ng-template>
+      </div>
+
+     
+
+      
+    </div>
