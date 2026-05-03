@@ -41,7 +41,37 @@
         </ng-template>
       </div>
 
-     
+       <!-- expensiveProducts (filter) -->
+      <div class="card p-4 shadow mb-3">
+        <h6>Filter Operator — Expensive Products</h6>
+        <p>Products filtered by price (example: price &gt; 500).</p>
+
+        <ng-container *ngIf="expensiveProducts && expensiveProducts.length; else noExpensive">
+          <table class="table table-sm table-striped">
+            <thead>
+              <tr>
+                <th style="width:50px">#</th>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Category</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of expensiveProducts; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ p.id }}</td>
+                <td>{{ p.title }}</td>
+                <td>₹{{ p.price }}</td>
+                <td>{{ p.category }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
+        <ng-template #noExpensive>
+          <p class="text-muted">No expensive products found for the selected threshold.</p>
+        </ng-template>
+      </div>
 
       
     </div>

@@ -30,7 +30,9 @@ export const routes: Routes = [
             { path: 'deleteproduct', loadComponent: () => import('../app/delete-product/delete-product').then(m => m.DeleteProduct) },
             { path: 'searchproduct', loadComponent: () => import('../app/product-search/product-search').then(m => m.ProductSearch) },
             { path: 'allproduct', loadComponent: () => import('../app/product-details/product-details').then(m => m.ProductDetails) },
-            { path: 'rxjsoperators', loadComponent: () => import('../app/rxjsoperators/rxjsoperators').then(m => m.RXJSOperators) }
+            { path: 'rxjsoperators', loadComponent: () => import('../app/rxjsoperators/rxjsoperators').then(m => m.RXJSOperators) },
+            { path: 'AGGrid', loadComponent: () => import('../app/aggrid/aggrid').then(m => m.AGGrid) },
+
         ]
 
     },

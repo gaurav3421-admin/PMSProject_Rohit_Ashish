@@ -18,7 +18,7 @@ export class RXJSOperators implements OnInit {
 
   productNames: string[] = [];
   productTitles: string[] = [];
-  //expensiveProducts: ProductItem[] = [];
+  expensiveProducts: ProductDetailsArray[] = [];
   //safeProducts: ProductItem[] = [];
 
   constructor(private productService: ProductService) { }
@@ -26,6 +26,10 @@ export class RXJSOperators implements OnInit {
   ngOnInit() {
     // Initialize component
     this.getAllProducts();
+    this.fetchExpensiveProducts(500).subscribe((products) => {
+      console.log('Expensive Products:', products);
+      this.expensiveProducts = products;
+    });
   }
 
 
@@ -37,6 +41,20 @@ export class RXJSOperators implements OnInit {
         this.productNames = responseData;
         console.log('Product Titles:', responseData);
       }
+    );
+
+  }
+  //switchMap, Filter and catchError Operator Example
+  fetchExpensiveProducts(minPrice: number): Observable<ProductDetailsArray[]> {
+    return this.productService.getAllProductDetails().pipe(
+      switchMap((data: any) => {
+        const expensiveProducts = (data.products || data).filter((item: ProductDetailsArray) => typeof item.price === 'number' && item.price > minPrice);
+        return of(expensiveProducts);
+      }),
+      catchError((error) => {
+        console.error('Error fetching product details:', error);
+        return of([]);
+      }),
     );
   }
 }
