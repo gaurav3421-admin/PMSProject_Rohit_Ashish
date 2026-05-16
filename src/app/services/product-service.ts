@@ -23,21 +23,20 @@ export class ProductService {
 
 
   // GET Method to fetch product details by ID
-  getAllProductDetails(): Observable<ProductDetailsArray[]> {
-    console.log("This is service Method :getAllProducts() calling");
-    if (this.httpClientRequest) {
+  // getAllProductDetails(): Observable<ProductDetailsArray[]> {
+  //   console.log("This is service Method :getAllProducts() calling");
+  //   if (this.httpClientRequest) {
 
-      // Return array of object (Product) 
-      // T - ProductItem[]
-      // Return  Observable <T>  : Observable <ProductItem[]> 
-      return this.httpClientRequest.get<ProductDetailsArray[]>(this.apiURLProductDetails);
+  //     // Return array of object (Product) 
+  //     // T - ProductItem[]
+  //     // Return  Observable <T>  : Observable <ProductItem[]> 
+  //     return this.httpClientRequest.get<ProductDetailsArray[]>(this.apiURLProductDetails);
 
+  //   } else {
+  //     return of([]);
+  //   }
 
-    } else {
-      return of([]);
-    }
-
-  }
+  // }
 
   // GET Method to fetch product details by ID
   getProductDetailsByID(productId: number): Observable<ProductDetailsArray | null> {
@@ -80,7 +79,16 @@ export class ProductService {
   //Updating a product will not update it into the server. It will simulate a PUT/PATCH request and will return updated product with modified data
   UpdateProductDetailsByID(productID: number, product: Product): Observable<Product | null> {
     if (this.httpClientRequest) {
-      return this.httpClientRequest.put<Product>(`${this.apiURLUpdateProduct}/${productID}`, product);
+      return this.httpClientRequest.put<Product>(`${this.apiURLUpdateProduct}/${productID}`, product).pipe
+      (
+                catchError((err: HttpErrorResponse) => {
+                  // Log full error object and a concise message
+                  console.error('UpdateProductDetailsByID HTTP error:', err);
+                  console.error(`UpdateProductDetailsByID failed: ${err.message} (status: ${err.status})`);
+                  // Return safe fallback so subscribers always receive Observable<ProductDetailsArray[]>
+                  return of(null);
+                })
+       );
     } else {
       return of(null);
     }
@@ -90,11 +98,19 @@ export class ProductService {
   //https://dummyjson.com/products/1
   DeleteProductDetailsByID(productId: number): Observable<IProductDelete | null> {
     if (this.httpClientRequest) {
-      return this.httpClientRequest.delete<IProductDelete | null>(`${this.apiURLDeleteProduct}/${productId}`);
+      return this.httpClientRequest.delete<IProductDelete | null>(`${this.apiURLDeleteProduct}/${productId}`).pipe
+      (
+                catchError((err: HttpErrorResponse) => {
+                  // Log full error object and a concise message
+                  console.error('DeleteProductDetailsByID HTTP error:', err);
+                  console.error(`DeleteProductDetailsByID failed: ${err.message} (status: ${err.status})`);
+                  // Return safe fallback so subscribers always receive Observable<ProductDetailsArray[]>
+                  return of(null);
+                })
+       );
     } else {
       return of(null);
     }
-
   }
 
 
@@ -113,6 +129,27 @@ export class ProductService {
   }
 
 
+
+  getAllProductDetails(): Observable<ProductDetailsArray[]> {
+    console.log("Service: getAllProductDetails() calling");
+
+    if (!this.httpClientRequest) {
+      console.warn('HttpClient not available (httpClientRequest is null). Returning empty array.');
+      return of([]);
+    }
+
+    return this.httpClientRequest.get<ProductDetailsArray[]>(this.apiURLProductDetails).pipe(
+      // optional: log successful response for debugging
+      // tap(data => console.log('getAllProductDetails response:', data)),
+      catchError((err: HttpErrorResponse) => {
+        // Log full error object and a concise message
+        console.error('getAllProductDetails HTTP error:', err);
+        console.error(`getAllProductDetails failed: ${err.message} (status: ${err.status})`);
+        // Return safe fallback so subscribers always receive Observable<ProductDetailsArray[]>
+        return of([]);
+      })
+    );
+  }
 
 
 }
